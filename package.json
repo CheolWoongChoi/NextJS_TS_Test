@@ -3,9 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "npm run open && next dev -p 4000",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "open": "open-cli http://localhost:4000"
   },
   "dependencies": {
     "next": "10.1.3",
@@ -14,6 +15,7 @@
   },
   "devDependencies": {
     "@types/react": "^17.0.3",
+    "prettier": "^2.2.1",
     "typescript": "^4.2.4"
   }
 }
