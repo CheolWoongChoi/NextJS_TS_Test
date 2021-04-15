@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { NextPageContext } from 'next';
 import { AppProps } from 'next/app';
 import '../styles/globals.css';
+import { css } from '@emotion/react';
 
 function App({ Component, pageProps }: AppProps & { test: string }) {
   const [cnt, setCnt] = useState(0);
@@ -9,12 +10,23 @@ function App({ Component, pageProps }: AppProps & { test: string }) {
   console.log('App PageProps');
   console.log(pageProps);
 
+  // 공통 레이아웃
   return (
-    <Component 
-      cnt={cnt}
-      setCnt={setCnt}
-      {...pageProps} 
-    />
+    <div 
+      css={css`
+        margin: 30px 0 0 30px;
+        border: solid 1px #000;
+        padding: 32px;
+        width: 375px;
+        height: 600px;
+      `}
+    >
+      <Component 
+        cnt={cnt}
+        setCnt={setCnt}
+        {...pageProps} 
+      />
+    </div>
   );
 }
 
