@@ -1,40 +1,39 @@
 import React from 'react';
 import Link from 'next/link';
 import { NextPageContext } from 'next';
+import styled from '@emotion/styled';
+import { setTitle } from '../slices/app';
 
-function Bye({ appData, byeData }) {
-	console.log('Bye PageProps');
+const ByeContainer = styled.div`
 
+`;
+
+function Bye({ byeData }) {
+	console.log('byeData: ' + byeData);
+	
 	return (
-		<div className='bye-wrapper'>
+		<ByeContainer>
 			<p style={{ color: 'red', fontSize: 30 }}>bye</p>
 			<Link href='/'>
 				<button>goMain</button>
 			</Link>
-			<div>{appData.title}, {byeData}</div>
-		</div>
+			<div>{byeData}</div>
+			<div>
+
+			</div>
+		</ByeContainer>
 	);
 }
 
 export default Bye;
 
-Bye.getInitialProps = (ctx: NextPageContext) => {
-	console.log('bye getInitialProps');
-	console.log(`==== ${ctx.pathname} ====`);
-	console.log(ctx);
+export function getStaticProps(context) {
+	console.log('build time');
+	const data = Math.floor(Math.random() * 1000);
 
 	return {
-		byeData: 1
+		props: {
+			byeData: data
+		}
 	}
 }
-
-// export function getStaticProps(context) {
-// 	console.log('bye getStaticProps');
-// 	console.log(context);
-
-// 	return {
-// 		props: {
-// 			hi: 1
-// 		}
-// 	}
-// }

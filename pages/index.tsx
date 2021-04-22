@@ -1,9 +1,9 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-// import styles from '../styles/Home.module.css';
-import fetch from 'unfetch';
-import { css } from '@emotion/core';
+import { useSelector } from 'react-redux';
+import { css, jsx } from '@emotion/react';
 import styled from '@emotion/styled';
+import { RootState } from '../store';
 
 const fetcher = async (...args: [string, any]) => {
   const res = await fetch(...args);
@@ -19,11 +19,19 @@ const blue = css`
 `;
 
 // styled component
-const Button = styled.button`
+const MainContainer = styled.main`
+`;
+
+const Button = styled.button<{ primary?: boolean }>`
   padding: 10px;
   background-color: yellow;
   font-size: 20px;
   color: purple;
+
+  ${(props) => props.primary && `
+    color: blue;
+    font-size: 25px;
+  `}
 
   &:hover {
     color: orange;
@@ -48,55 +56,91 @@ const CustomDiv = styled.div`
       font-size: 10px;
     }
   }
+
+  & ${CustomP} {
+    background-color: blue;
+    color: black;
+  }
 `
 
-
-export default function Main(pro) {
+function Main(props) {
   const router = useRouter();
-
-  console.log('index PageProps');
-  console.log(pro);
+  // const { item } = useSelector((state: RootState) => state.app);
 
   const goHello = () => {
     router.push('/hello');
   }
+  
   const goBye = () => {
     router.push('/bye');
   }
 
+  const handleHello = async () => {
+    const res = await fetch('/api/hello');
+    const data = await res.json();
+
+    console.log(data);
+  }
+
   return (
-    <div>
+    <MainContainer 
+      /* css={css`
+      overflow: auto;
+      height: 100%;
+    `} */>
       <Head>
-        <title>Hi</title>
+        <title>Index</title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
-
-      <main className='main2'>
-        main
+        <h1>
+          main
+        </h1>
         <div>
-          <button onClick={goHello}>
-            go hello
-          </button>
+          <h1>redux data</h1>
+          {/* <p>{item.id}</p>
+          <p>{item.title}</p>
+          <p>{item.content}</p> */}
         </div>
         <div>
-          <button onClick={goBye}>
-            go bye
-          </button>
+          <h2>buttons</h2>
+          <div>
+            <button onClick={goHello}>
+              go hello
+            </button>
+          </div>
+          <div>
+            <button onClick={goBye}>
+              go bye
+            </button>
+          </div>
         </div>
-        <div>
-          <h1>data test</h1>
+        {/* <div>
+          <h2>emotionjs test</h2>
           <p css={red}>red text</p>
           <p css={blue}>blue text</p>
           <CustomDiv>
-            <Button>
-              Button Comp text
-            </Button>
+            <div>
+              <Button>
+                Button Comp text
+              </Button>
+            </div>
+            <div css={css`
+              margin-top: 10px;
+            `}>
+              <Button 
+                primary
+                onClick={handleHello}
+              >
+                hello api
+              </Button>
+            </div>
             <CustomP>
               CustomP Comp text
             </CustomP>
           </CustomDiv>
-        </div>
-      </main>
-    </div>
+        </div> */}
+    </MainContainer>
   );
 }
+
+export default Main;

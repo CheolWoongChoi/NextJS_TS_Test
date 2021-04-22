@@ -2,33 +2,34 @@ import React from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 
-function HelloPage({ cnt, setCnt }) {
+function HelloPage({ helloData }) {
+  console.log('helloData: ' + helloData);
+
   return (
     <div className='hello-wrapper'>
       <Head>
         <title>hello world</title>
       </Head>
       hello
-      <div>cnt: {cnt}</div>
-      <button onClick={() => setCnt((cnt) => cnt + 1)}>+</button>
       <div>
-        <Link href='/'>
-          <button>goMain</button>
-        </Link>
+        {helloData}
       </div>
+      <Link href='/'>
+        <button>goMain</button>
+      </Link>
     </div>
   );
 }
 
 export default HelloPage;
 
-export function getStaticProps(context) {
-  console.log('hello getStaticProps');
-  console.log(context.query);
+export function getServerSideProps(context) {
+  console.log('serverside time');
+  const data = Math.floor(Math.random() * 1000);
 
   return {
     props: {
-      id: 1,
+      helloData: data,
     },
   };
 }
