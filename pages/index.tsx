@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
-import { css, jsx } from '@emotion/react';
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { RootState } from '../store';
 
@@ -84,10 +84,10 @@ function Main(props) {
 
   return (
     <MainContainer 
-      /* css={css`
-      overflow: auto;
-      height: 100%;
-    `} */>
+      css={css`
+        overflow: auto;
+        height: 100%;
+      `}>
       <Head>
         <title>Index</title>
         <link rel='icon' href='/favicon.ico' />
@@ -114,7 +114,7 @@ function Main(props) {
             </button>
           </div>
         </div>
-        {/* <div>
+        <div>
           <h2>emotionjs test</h2>
           <p css={red}>red text</p>
           <p css={blue}>blue text</p>
@@ -138,7 +138,7 @@ function Main(props) {
               CustomP Comp text
             </CustomP>
           </CustomDiv>
-        </div> */}
+        </div>
     </MainContainer>
   );
 }

@@ -1,8 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { NextPageContext } from 'next';
 import styled from '@emotion/styled';
-import { setTitle } from '../slices/app';
 
 const ByeContainer = styled.div`
 
