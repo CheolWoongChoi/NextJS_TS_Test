@@ -8,7 +8,7 @@ import { RootState } from '../store';
 const fetcher = async (...args: [string, any]) => {
   const res = await fetch(...args);
   return res.json();
-}
+};
 
 const red = css`
   color: red;
@@ -19,8 +19,7 @@ const blue = css`
 `;
 
 // styled component
-const MainContainer = styled.main`
-`;
+const MainContainer = styled.main``;
 
 const Button = styled.button<{ primary?: boolean }>`
   padding: 10px;
@@ -28,7 +27,9 @@ const Button = styled.button<{ primary?: boolean }>`
   font-size: 20px;
   color: purple;
 
-  ${(props) => props.primary && `
+  ${(props) =>
+    props.primary &&
+    `
     color: blue;
     font-size: 25px;
   `}
@@ -61,7 +62,7 @@ const CustomDiv = styled.div`
     background-color: blue;
     color: black;
   }
-`
+`;
 
 function Main(props) {
   const router = useRouter();
@@ -69,76 +70,66 @@ function Main(props) {
 
   const goHello = () => {
     router.push('/hello');
-  }
-  
+  };
+
   const goBye = () => {
     router.push('/bye');
-  }
+  };
 
   const handleHello = async () => {
     const res = await fetch('/api/hello');
     const data = await res.json();
 
     console.log(data);
-  }
+  };
 
   return (
-    <MainContainer 
+    <MainContainer
       css={css`
         overflow: auto;
         height: 100%;
-      `}>
+      `}
+    >
       <Head>
         <title>Index</title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
-        <h1>
-          main
-        </h1>
-        <div>
-          <h1>redux data</h1>
-          {/* <p>{item.id}</p>
+      <h1>main</h1>
+      <div>
+        <h1>redux data</h1>
+        {/* <p>{item.id}</p>
           <p>{item.title}</p>
           <p>{item.content}</p> */}
+      </div>
+      <div>
+        <h2>buttons</h2>
+        <div>
+          <button onClick={goHello}>go hello</button>
         </div>
         <div>
-          <h2>buttons</h2>
-          <div>
-            <button onClick={goHello}>
-              go hello
-            </button>
-          </div>
-          <div>
-            <button onClick={goBye}>
-              go bye
-            </button>
-          </div>
+          <button onClick={goBye}>go bye</button>
         </div>
-        <div>
-          <h2>emotionjs test</h2>
-          <p css={red}>red text</p>
-          <p css={blue}>blue text</p>
-          <CustomDiv>
-            <div>
-              <Button>
-                Button Comp text
-              </Button>
-            </div>
-            <div css={css`
+      </div>
+      <div>
+        <h2>emotionjs test</h2>
+        <p css={red}>red text</p>
+        <p css={blue}>blue text</p>
+        <CustomDiv>
+          <div>
+            <Button>Button Comp text</Button>
+          </div>
+          <div
+            css={css`
               margin-top: 10px;
-            `}>
-              <Button 
-                primary
-                onClick={handleHello}
-              >
-                hello api
-              </Button>
-            </div>
-            <CustomP>
-              CustomP Comp text
-            </CustomP>
-          </CustomDiv>
-        </div>
+            `}
+          >
+            <Button primary onClick={handleHello}>
+              hello api
+            </Button>
+          </div>
+          <CustomP>CustomP Comp text</CustomP>
+        </CustomDiv>
+      </div>
     </MainContainer>
   );
 }
