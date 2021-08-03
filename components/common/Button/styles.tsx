@@ -1,10 +1,7 @@
 import styled from '@emotion/styled';
+import { TButtonProps } from './index';
 
-type Props = {
-  primary?: boolean;
-};
-
-export const ButtonContainer = styled.button<Props>`
+const Button = styled.button<Partial<TButtonProps>>`
   margin-top: 30px;
   padding: 10px;
   background-color: yellow;
@@ -16,3 +13,7 @@ export const ButtonContainer = styled.button<Props>`
     color: orange;
   }
 `;
+
+export default {
+  Button,
+};

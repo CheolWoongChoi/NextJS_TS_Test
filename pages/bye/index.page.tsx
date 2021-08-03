@@ -1,24 +1,22 @@
 import React from 'react';
 import Link from 'next/link';
-import { ByeContainer } from './styles';
-import Button from '../../components/Button';
+import { PageContainer as ByePageContainer } from '@/components/layouts';
+import { Button } from '@/components/common';
 
-function Bye({ byeData }) {
-  console.log('byeData: ' + byeData);
-
+function ByePage({ byeData }) {
   return (
-    <ByeContainer>
+    <ByePageContainer>
       <p style={{ color: 'red', fontSize: 30 }}>bye</p>
       <Link href='/'>
         <button>goMain</button>
       </Link>
       <div>{byeData}</div>
       <Button>버튼테스트</Button>
-    </ByeContainer>
+    </ByePageContainer>
   );
 }
 
-export default Bye;
+export default ByePage;
 
 export function getStaticProps(context) {
   console.log('build time');

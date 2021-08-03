@@ -1,23 +1,16 @@
 import React from 'react';
-import Head from 'next/head';
-import Link from 'next/link';
+import { PageContainer } from '@/components/layouts';
 
 function HelloPage({ helloData }) {
-  console.log('helloData: ' + helloData);
-
   return (
-    <div className='hello-wrapper'>
-      <Head>
-        <title>hello world</title>
-      </Head>
-      hello
+    <PageContainer>
       <div>
-        {helloData}
+        <p>data</p>
+        <p>
+          <b>{helloData}</b>
+        </p>
       </div>
-      <Link href='/'>
-        <button>goMain</button>
-      </Link>
-    </div>
+    </PageContainer>
   );
 }
 

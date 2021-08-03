@@ -1,27 +1,24 @@
 import React, { useState } from 'react';
-import { AppProps } from 'next/app';
-import { Provider } from 'react-redux';
-import store from '../store';
-// import wrapper from '../store';
-import Theme from '../styles/Theme';
-import GlobalStyle from '../styles/GlobalStyle';
+import { AppProps as TAppProps } from 'next/app';
+import wrapper from '@/store';
+import Theme from '@/styles/Theme';
+import GlobalStyle from '@/styles/GlobalStyle';
 
-function App({ Component, pageProps }: AppProps) {
+function App({ Component, pageProps }: TAppProps) {
   const [cnt, setCnt] = useState(0);
 
   // 공통 레이아웃
   return (
-    <Provider store={store}>
+    <>
       <GlobalStyle />
       <Theme>
         <Component cnt={cnt} setCnt={setCnt} {...pageProps} />
       </Theme>
-    </Provider>
+    </>
   );
 }
 
-export default App;
-// export default wrapper.withRedux(App);
+export default wrapper.withRedux(App);
 
 // App.getInitialProps = async (context) => {
 //   const { Component, ctx } = context;
